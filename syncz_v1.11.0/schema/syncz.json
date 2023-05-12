@@ -1,0 +1,310 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JSON Schema for syncz, Endevor Team Build tool",
+  "description": "Endevor Team Build synchronization tool used to synchonize code between PC and mainframe",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "host": {
+      "type": "string",
+      "description": "SSH hostname for remote LPAR where `syncz` will be connecting to"
+    },
+    "port": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "SSH port for remote LPAR"
+    },
+    "user": {
+      "type": "string",
+      "description": "SSH username for remote LPAR"
+    },
+    "ciphers": {
+      "type": "array",
+      "description": "SSH candidate cipher algorithms",
+      "items": {
+        "type": "string",
+        "oneOf": [
+          {
+            "enum": [
+              "aes128-ctr",
+              "aes192-ctr",
+              "aes256-ctr",
+              "arcfour128",
+              "arcfour256",
+              "arcfour",
+              "aes128-gcm@openssh.com",
+              "chacha20-poly1305@openssh.com",
+              "aes128-cbc",
+              "3des-cbc"
+            ]
+          }
+        ]
+      }
+    },
+    "macs": {
+      "type": "array",
+      "description": "SSH candidate MAC algorithms",
+      "items": {
+        "type": "string",
+        "oneOf": [
+          {
+            "enum": [
+              "hmac-sha2-256-etm@openssh.com",
+              "hmac-sha2-256",
+              "hmac-sha1",
+              "hmac-sha1-96"
+            ]
+          }
+        ]
+      }
+    },
+    "zospath": {
+      "type": "string",
+      "description": "Path to syncz binary on z/OS (if not specified, `syncz` would be picked either from `PATH` or `~/.syncz` if uploaded automatically)"
+    },
+    "keyfile": {
+      "type": "string",
+      "description": "Full path to the SSH key file (for connecting to the mainframe)"
+    },
+    "exitcmderr": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Specify if `syncz` should end immediately if a command error occurs (part of `syncz -a` or `syncz -c` run)"
+    },
+    "localencoding": {
+      "type": "string",
+      "description": "Local character encoding of the files which will be synchronized to the mainframe (default `UTF8`)"
+    },
+    "remoteencoding": {
+      "type": "string",
+      "description": "Remote/mainframe character encoding of the translated files (default `IBM-1047`)"
+    },
+    "sync": {
+      "type": "array",
+      "description": "A list of synchronization entries, which will be synchronized from PC to mainframe.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificator of this entry, which can be used as a reference in `syncz` CLI arguments"
+          },
+          "local": {
+            "type": "string",
+            "description": "The local path to be synchronized with remote (default is current directory `.`)"
+          },
+          "remote": {
+            "type": "string",
+            "description": "The remote path to be synchronized with the local"
+          },
+          "dos2unix": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specify if `\\r\\n` should be changed to `\\n` (default: `true`)"
+          },
+          "newfs": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specify if the `remote` path should be separated ZFS filesystem which should be created (requires right to mount filesystems)"
+          },
+          "dsn": {
+            "type": "string",
+            "description": "Data set name of the remote filesystem (requires right to mount filesystems)"
+          },
+          "fsvol": {
+            "type": "string",
+            "description": "Volume name of the remote filesystem"
+          },
+          "fssize": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Primary size in MB of the remote filesystem"
+          },
+          "fssize2": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Secondary size in MB of the remote filesystem"
+          },
+          "localencoding": {
+            "type": "string",
+            "description": "Local character encoding of the files which will be synchronized to the mainframe (default `UTF8`)"
+          },
+          "remoteencoding": {
+            "type": "string",
+            "description": "Remote/mainframe character encoding of the translated files (default `IBM-1047`)"
+          },
+          "ignore": {
+            "type": "array",
+            "description": "Name list of files/directories to be ignored during synchronization (can use gitignore pattern)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "binfiles": {
+            "type": "array",
+            "description": "Name list of files/directories that are/contain binary files and won't be translated using character encoding (can use gitignore pattern)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ignoreremove": {
+            "type": "array",
+            "description": "Name list of files/directories to be ignored for the `--remove` function (can use gitignore pattern)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "remove": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specify if `syncz` should remove files on remote which don't exist locally (default `false`)"
+          },
+          "compressthreshold": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "The threshold in kilobytes for data compression to kicks in (default compress every time no matter size)"
+          }
+        }
+      }
+    },
+    "backsync": {
+      "type": "array",
+      "description": "A list of entries which should be synchronized back from mainframe to PC.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificator of this entry, which can be used as a reference in `syncz` CLI arguments"
+          },
+          "local": {
+            "type": "string",
+            "description": "The local path where the remote files will be synchronized back to (default is current directory `.`)"
+          },
+          "remote": {
+            "type": "string",
+            "description": "The remote path to be synchronized back to the local"
+          },
+          "unix2dos": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specify if `\\n` should be changed to `\\r\\n` during back synchronization (default: `true`)"
+          },
+          "ignore": {
+            "type": "array",
+            "description": "Name list of files/directories to be ignored during back synchronization (can use gitignore pattern)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "binfiles": {
+            "type": "array",
+            "description": "Name list of files/directories that are/contain binary files and won't be translated using character encoding (can use gitignore pattern)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "localencoding": {
+            "type": "string",
+            "description": "Local character encoding of the files which will be synchronized back from the mainframe (default `UTF8`)"
+          },
+          "remoteencoding": {
+            "type": "string",
+            "description": "Remote/mainframe character encoding of the translated files (default `IBM-1047`)"
+          }
+        }
+      }
+    },
+    "retrieve_pdse": {
+      "type": "array",
+      "description": "A list of entries which should be synchronized back from mainframe to PC.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificator of this entry, which can be used as a reference in `syncz` CLI arguments"
+          },
+          "pdse": {
+            "type": "string",
+            "description": "The PDSE dataset to retrieve from mainframe (e.g. `MY.PDSE.DATASET`)"
+          },
+          "stagedir": {
+            "type": "string",
+            "description": "The remote staging directory to copy the PDSE members for PAX/compress"
+          },
+          "local": {
+            "type": "string",
+            "description": "The local directory where the retrieved members will be placed (default is current directory `.`)"
+          },
+          "ext": {
+            "type": "string",
+            "description": "The extension to give to the member names locally"
+          },
+          "localencoding": {
+            "type": "string",
+            "description": "Local character encoding of the retrieved members (default `UTF8`)"
+          },
+          "remoteencoding": {
+            "type": "string",
+            "description": "Remote/mainframe character encoding of the members which should be retrieved from datasets (default `IBM-1047`)"
+          }
+        }
+      }
+    }
+  }
+}

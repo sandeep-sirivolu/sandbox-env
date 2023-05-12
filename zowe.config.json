@@ -1,0 +1,92 @@
+{
+    "$schema": "./zowe.schema.json",
+    "profiles": {
+        "zosmf": {
+            "type": "zosmf",
+            "properties": {
+                "port": 10443,
+                "host": "10.1.2.210",
+                "user": "",
+                "password": ""
+            }
+        },
+        "tso": {
+            "type": "tso",
+            "properties": {
+                "account": "",
+                "codePage": "1047",
+                "logonProcedure": "IZUFPROC"
+            },
+            "secure": []
+        },
+        "ssh": {
+            "type": "ssh",
+            "properties": {
+                "port": 22
+            },
+            "secure": []
+        },
+        "cics": {
+            "type": "cics",
+            "properties": {},
+            "secure": []
+        },
+        "db2-1": {
+            "type": "db2",
+            "properties": {
+                "port": 5035,
+                "host": "10.1.2.249",
+                "database": "DALLASB",
+                "user": "",
+                "password": ""                
+            }
+        },
+        "db2-2": {
+            "type": "db2",
+            "properties": {
+                "port": 5040,
+                "host": "10.1.2.249",
+                "database": "DALLASC",
+                "user": "",
+                "password": ""                
+            }
+        },   
+        "ims": {
+            "type": "ims",
+            "properties": {},
+            "secure": []
+        },
+        "mq": {
+            "type": "mq",
+            "properties": {},
+            "secure": []
+        },
+        "zftp": {
+            "type": "zftp",
+            "properties": {
+                "port": 21,
+                "secureFtp": true
+            },
+            "secure": []
+        },
+        "base": {
+            "type": "base",
+            "properties": {
+                "host": "10.1.2.210",
+                "rejectUnauthorized": false
+            },
+        }
+    },
+    "defaults": {
+        "zosmf": "zosmf",
+        "tso": "tso",
+        "ssh": "ssh",
+        "cics": "cics",
+        "db2": "db2",
+        "ims": "ims",
+        "mq": "mq",
+        "zftp": "zftp",
+        "base": "base"
+    },
+    "autoStore": true
+}
