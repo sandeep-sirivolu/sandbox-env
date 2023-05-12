@@ -1,0 +1,6 @@
+1. The Workshop/Demo instructor will share the zowe user id and passowrd credentials to all the workshop users.
+
+2. Workshop users to run the below commands to configure zowe credentials in their corresponding workspace. 
+
+     zowe config set "profiles.zosmf.properties.user" "cust00x"
+     zowe config set "profiles.zosmf.properties.password" "cust00x"
