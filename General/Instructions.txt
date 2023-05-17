@@ -7,4 +7,4 @@
      zowe config set "profiles.zosmf.properties.user" "cust00x"
      zowe config set "profiles.zosmf.properties.password" "cust00x"
 
-Please replace letter "x" with the corresponding number listed in your UserID. For example: If you are user "mfwsuser1@demo.broadcom.com", replace "X" with number 1 and if you are user "mfwsuser2@demo.broadcom.com", replace "x" with number 2. 
+Please replace letter "x" with the corresponding number listed in your UserID. For example: If you are user "mfwsuser1@demo.broadcom.com", replace "x" with number 1 and if you are user "mfwsuser2@demo.broadcom.com", replace "x" with number 2. 
