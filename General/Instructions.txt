@@ -1,8 +1,8 @@
 1. The Workshop instructor will share the zowe user id and password credentials to all the workshop users.
 
-2. Workshop users to run the startupscript.sh each time workspace is launched. 
+2. During the initial launch of workspace and resuming from pause, Workshop users should run the "./startupscript.sh" located at "/home/developer/sandbox-env/General".
 
-3. Workshop users to run the below commands to configure zowe credentials in their corresponding workspace. 
+3. Workshop users should run the below commands to configure zowe credentials in their corresponding workspace. 
 
      zowe config set "profiles.zosmf.properties.user" "cust00x"
      zowe config set "profiles.zosmf.properties.password" "cust00x"
