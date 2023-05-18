@@ -1,0 +1,31 @@
+I). Zowe Section: 
+
+1. Below are the commands to configure zowe in the workspace.  
+
+     zowe config set "profiles.zosmf.properties.user" "cust00x"
+     zowe config set "profiles.zosmf.properties.password" "cust00x"
+
+2. From the command line, run: 
+
+     zowe files list ds cust00x.*
+
+     This will list the files.
+
+Please replace letter "x" with the corresponding number listed in your UserID. For example: If you are user "mfwsuser1@demo.broadcom.com", replace "x" with number 1 and if you are user "mfwsuser2@demo.broadcom.com", replace "x" with number 2. 
+
+3. From Zowe Explorer: 
+
+Select the Zowe Explorer icon from the left hand side vertical menu.
+   
+   - DATA SETS -> zosmf -> Search icon and enter "cust00x*"
+     This will list Data Sets.
+   
+   - UNIX SYSTEM SERVICES (USS)-> zosmf -> Search icon and enter "/var"
+     This will list the corresponding directories and files.
+
+   - JOBS -> zosmf -> Search icon and enter "/CUST00x"
+     This will list the corresponding Job ID details. 
+
+Please replace letter "x" with the corresponding number listed in your UserID. For example: If you are user "mfwsuser1@demo.broadcom.com", replace "x" with number 1 and if you are user "mfwsuser2@demo.broadcom.com", replace "x" with number 2. 
+
+
