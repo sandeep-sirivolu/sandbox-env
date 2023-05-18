@@ -1,5 +1,5 @@
 1. The Workshop instructor will share the zowe user id and password credentials to all the workshop users.
 
-2. Workshop users should run the "./startupscript.sh" located at "/home/developer/sandbox-env/General" during below two scenarios: 
+2. Workshop users should run the "./startupscript.sh" located at "/home/developer/sandbox-env/" during below two scenarios: 
    1. During initial launch of workspace. 
    2. When resuming a paused workspace. 
