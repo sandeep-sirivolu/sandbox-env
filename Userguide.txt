@@ -27,3 +27,5 @@ Select the Zowe Explorer icon from the left hand side vertical menu.
      This will list the corresponding Job ID details. 
 
 Please replace letter "x" with the corresponding number listed in your UserID. For example: If you are user "mfwsuser1@demo.broadcom.com", replace "x" with number 1 and if you are user "mfwsuser2@demo.broadcom.com", replace "x" with number 2. 
+
+Thank you
