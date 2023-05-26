@@ -1,1 +1,1 @@
-echo 'export PATH=$PATH:/home/developer/sandbox-env/syncz_v1.11.0/bin/linux_amd64/' >> .bashrc
+echo 'export PATH=$PATH:/home/developer/sandbox-env/syncz_v1.11.0/bin/linux_amd64/' >> /home/developer/.bashrc
