@@ -1,1 +1,1 @@
-sudo cp /home/developer/sandbox-env/syncz_v1.11.0/bin/linux_amd64/syncz /bin
+echo 'export PATH=$PATH:/home/developer/sandbox-env/syncz_v1.11.0/bin/linux_amd64/' >> .bashrc

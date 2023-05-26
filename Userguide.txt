@@ -2,8 +2,8 @@ I). Zowe Section:
 
 1. Below are the commands to configure zowe in the workspace.  
 
-     zowe config set "profiles.zosmf.properties.user" "cust00x"
-     zowe config set "profiles.zosmf.properties.password" "cust00x"
+   zowe config set "profiles.base.properties.user" "custx" --secure false --global-config
+   zowe config set "profiles.base.properties.password" "custx" --secure false --global-config
 
 2. From the command line, run: 
 
